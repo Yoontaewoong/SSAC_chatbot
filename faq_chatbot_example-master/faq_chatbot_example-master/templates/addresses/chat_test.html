@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="/static/jquery-3.2.1.min.js"></script>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Beommy Bot (beta)</title>
+</head>
+<style>
+.chat_content {height: 600px;width: 500px;overflow-y:scroll;padding:10px 15px;background: cornflowerblue}
+.chat_wrap {display:none;width: 350px;height: 500px;position: fixed;bottom: 30px;right: 95px;background: #a9bdce;}
+.chat_input {padding:2px 5px;}
+.chat_header {padding: 10px 15px;border-bottom: 1px solid #95a6b4;}
+.chat_header .close_btn {border: none;background: none;float: right;}
+.send_btn {;border: 1px solid #666;background: #ffeb33;height: 28px;color: #0a0a0a;}
+.msg_box:after {content: '';display: block;clear:both;}
+.msg_box > span {padding: 3px 5px;word-break: break-all;display: block;max-width: 300px;margin-bottom: 10px;border-radius: 4px}
+.msg_box.send > span {background:#ffeb33;float: right;}
+.msg_box.receive > span {background:#fff;float: left;}
+.tg {border: 1px solid; margin: 10px; padding: 5px}
+.table {border: 1px solid}
+.content_wrap {width: 100%; margin: 0 auto;}
+</style>
+<body>
+
+<div class="chat_header">
+    <span>Beommy Bot (beta)</span>
+    <button type="button" id="close_chat_btn" class="close_btn">X</button>
+</div>
+<div style="margin: 10px">
+    질문을 입력하고 범희님을 누르세요. 버미 봇이 비슷한 질문을 찾아드립니다.<br>
+    비슷한 유형의 질문을 찾지 못하면 옆에 범희님한테 넘기세요.
+</div>
+<form id="form" style="display: inline-block">
+    <textarea type="text" name="input1" class="chat_input" id="input1" rows="11" cols="40" style="vertical-align: top;display: inline-block; width: 460px" ></textarea>
+    <input type="button" value="" id="btn_submit" class="send_btn" align="center" style="vertical-align: top;background: url({% static "img.png" %});background-size: 150px; display: inline-block;width: 150px; height: 150px;box-shadow: 3px 3px 3px gray;"  />
+</form>
+
+<div class="content_wrap">
+    <table class="table">
+        <colgroup>
+            <col width="20%">
+            <col width="40%">
+            <col width="40%">
+        </colgroup>
+        <tr>
+            <th class="tg" style="background-color: #a9bdce"> 순위 </th>
+            <th class="tg" style="background-color: #a9bdce"> 질문 </th>
+            <th class="tg" style="background-color: #a9bdce"> 답 </th>
+        </tr>
+        <tr>
+            <td id="acc1" class="tg">  </td>
+            <td id="question1" class="tg" >  </td>
+            <td id="answer1" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc2" class="tg">  </td>
+            <td id="question2" class="tg">  </td>
+            <td id="answer2" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc3" class="tg">  </td>
+            <td id="question3" class="tg">  </td>
+            <td id="answer3" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc4" class="tg">  </td>
+            <td id="question4" class="tg">  </td>
+            <td id="answer4" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc5" class="tg">  </td>
+            <td id="question5" class="tg">  </td>
+            <td id="answer5" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc6" class="tg">  </td>
+            <td id="question6" class="tg">  </td>
+            <td id="answer6" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc7" class="tg">  </td>
+            <td id="question7" class="tg">  </td>
+            <td id="answer7" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc8" class="tg">  </td>
+            <td id="question8" class="tg">  </td>
+            <td id="answer8" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc9" class="tg">  </td>
+            <td id="question9" class="tg">  </td>
+            <td id="answer9" class="tg">  </td>
+        </tr>
+        <tr>
+            <td id="acc10" class="tg">  </td>
+            <td id="question10" class="tg">  </td>
+            <td id="answer10" class="tg">  </td>
+        </tr>
+
+    </table>
+</div>
+<script>
+    $("#input1").keyup(function(e){if(e.keyCode == 13)  send(); });
+
+    $('#btn_submit').click(function () {
+        send();
+    });
+    $('#form').on('submit', function(e){
+       e.preventDefault();
+       send();
+    });
+
+    function send(){
+        $.ajax({
+            url:  'http://10.3.2.186:8000/chat_service/',
+            type: 'post',
+            dataType: 'json',
+            data: $('form').serialize(),
+            success: function(data) {
+                console.log(data);
+                <!--$('#reponse').html(data.reponse);-->
+                $("#acc1").text('1위 \n' + data.acc1);
+                $("#acc2").text('2위 \n' + data.acc2);
+                $("#acc3").text('3위 \n' + data.acc3);
+                $("#acc4").text('4위 \n' + data.acc4);
+                $("#acc5").text('5위 \n' + data.acc5);
+                $("#acc6").text('6위 \n' + data.acc6);
+                $("#acc7").text('7위 \n' + data.acc7);
+                $("#acc8").text('8위 \n' + data.acc8);
+                $("#acc9").text('9위 \n' + data.acc9);
+                $("#acc10").text('10위 \n' + data.acc10);
+                $("#question1").text(data.question1);
+                $("#question2").text(data.question2);
+                $("#question3").text(data.question3);
+                $("#question4").text(data.question4);
+                $("#question5").text(data.question5);
+                $("#question6").text(data.question6);
+                $("#question7").text(data.question7);
+                $("#question8").text(data.question8);
+                $("#question9").text(data.question9);
+                $("#question10").text(data.question10);
+                $("#answer1").text(data.answer1);
+                $("#answer2").text(data.answer2);
+                $("#answer3").text(data.answer3);
+                $("#answer4").text(data.answer4);
+                $("#answer5").text(data.answer5);
+                $("#answer6").text(data.answer6);
+                $("#answer7").text(data.answer7);
+                $("#answer8").text(data.answer8);
+                $("#answer9").text(data.answer9);
+                $("#answer10").text(data.answer10);
+            }
+        })
+    };
+
+    function send2(){
+        $.ajax({
+            url:  'http://10.3.2.186:8000/search_keywords/',
+            type: 'post',
+            dataType: 'json',
+            data: $('form').serialize(),
+            success: function(data) {
+                console.log(data);
+                <!--$('#reponse').html(data.reponse);-->
+                $("#acc1").text('1위 \n' + data.acc1);
+                $("#acc2").text('2위 \n' + data.acc2);
+                $("#acc3").text('3위 \n' + data.acc3);
+                $("#acc4").text('4위 \n' + data.acc4);
+                $("#acc5").text('5위 \n' + data.acc5);
+                $("#acc6").text('6위 \n' + data.acc6);
+                $("#acc7").text('7위 \n' + data.acc7);
+                $("#acc8").text('8위 \n' + data.acc8);
+                $("#acc9").text('9위 \n' + data.acc9);
+                $("#acc10").text('10위 \n' + data.acc10);
+                $("#question1").text(data.question1);
+                $("#question2").text(data.question2);
+                $("#question3").text(data.question3);
+                $("#question4").text(data.question4);
+                $("#question5").text(data.question5);
+                $("#question6").text(data.question6);
+                $("#question7").text(data.question7);
+                $("#question8").text(data.question8);
+                $("#question9").text(data.question9);
+                $("#question10").text(data.question10);
+                $("#answer1").text(data.answer1);
+                $("#answer2").text(data.answer2);
+                $("#answer3").text(data.answer3);
+                $("#answer4").text(data.answer4);
+                $("#answer5").text(data.answer5);
+                $("#answer6").text(data.answer6);
+                $("#answer7").text(data.answer7);
+                $("#answer8").text(data.answer8);
+                $("#answer9").text(data.answer9);
+                $("#answer10").text(data.answer10);
+            }
+        })
+    };
+</script>
+</body>
+</html>
