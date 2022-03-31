@@ -1,8 +1,0 @@
-# Django
-*.log
-*.pot
-*.pyc
-settings.py
-__init__.py
-db.sqlite3
-__pycache__
