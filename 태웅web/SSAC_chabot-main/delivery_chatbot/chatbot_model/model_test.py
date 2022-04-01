@@ -390,7 +390,7 @@ def run(text):
 
   import pickle
   # loading
-  with open('C:\\Users\\user\\Desktop\\태웅web\\SSAC_chabot-main\\delivery_chatbot\\chatbot_model\\tokenizer\\tokenizer.pickle', 'rb') as handle:
+  with open('C:\\chatbot\\태웅web\\SSAC_chabot-main\\delivery_chatbot\\chatbot_model\\tokenizer\\tokenizer.pickle', 'rb') as handle:
       tokenizer = pickle.load(handle)
 
   # 서브워드텍스트인코더를 사용하여 질문과 답변을 모두 포함한 단어 집합(Vocabulary) 생성
@@ -433,7 +433,7 @@ def run(text):
 
   model_predict.compile(optimizer=optimizer, loss=loss_function, metrics=[accuracy])
 
-  checkpoint_filepath = "C:\\Users\\user\\Desktop\\태웅web\\SSAC_chabot-main\\delivery_chatbot\\chatbot_model\\model_weight\\transformer_50epochs.h5"
+  checkpoint_filepath = "C:\\chatbot\\태웅web\\SSAC_chabot-main\\delivery_chatbot\\chatbot_model\\model_weight\\transformer_50epochs.h5"
 
   model_predict.load_weights(checkpoint_filepath)
 

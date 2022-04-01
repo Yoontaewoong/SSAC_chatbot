@@ -13,7 +13,7 @@ drive.mount('/content/drive')
 !pip install transformers
 
 import tensorflow as tf
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer # 다양한 pretrained 모델을 위한 tokenizer import 
 from transformers import TFGPT2LMHeadModel
 import pandas as pd
 from tqdm import tqdm
