@@ -56,7 +56,7 @@
                 <!-- <form method="post" id="myform"> -->
                     <!-- {% csrf_token %} -->
             	<!-- <button class="msg_send_btn1" type="button" class="mytext" onclick="runSpeechRecognition()";><i class="fa fa-microphone" aria-hidden="true"></i></button> -->
-              <input type="text" class="write_msg inputfield mytext" placeholder="Type a message" name="message" id="send" autocomplete="off" />
+              <input type="text" class="write_msg inputfield mytext" placeholder="Type a message" name="message" id="send" autocomplete="off" onkeyup="enterkey();" />
               <button class="msg_send_btn" type="submit" onclick="sending();" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
           
           <!-- </form> -->
@@ -106,6 +106,14 @@
   insertChat("you", '{{response_greeting}}',0);
   {% endif %}
 
+  function enterkey() {
+        if (window.event.keyCode == 13) {
+          console.log("엔터")
+          sending()
+        }
+}
     </script>
+
+    
 </body>
 </html>
