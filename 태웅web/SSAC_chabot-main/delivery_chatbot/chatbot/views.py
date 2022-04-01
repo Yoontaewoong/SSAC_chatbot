@@ -3,20 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 import chatbot_model.model_test as test
-# from chatterbot import ChatBot
-# from chatterbot.trainers import ChatterBotCorpusTrainer
 
-
-# Create your views here.
-# def index(request):
-#     return render(request, 'chatbot/main.html')
-
-# Create a new instance of a ChatBot
-# bot = ChatBot('MyBot', storage_adapter='chatterbot.storage.SQLStorageAdapter')
-
-# trainer = ChatterBotCorpusTrainer(bot)
-
-# trainer.train("chatterbot.corpus.english")
 
 def index(request):
 	print("============= index 실행 ==================")
