@@ -2,13 +2,13 @@
 body{
     margin: 0;
     height: 100%;
-    background-color: #47535E;
+    background-color: #FFFAFA;
     overflow: hidden;
 }
 
 .header {
-    background: linear-gradient(#393a4e, #272837);
-    border-bottom-color: #393a4e;
+    background: linear-gradient(#00ffff  , #00ffff  );
+    border-bottom-color: transparent;
 }
 
 .flex.flex-cols {
@@ -66,7 +66,7 @@ body{
     float:right;background:#74B9FF;
 }
 .msj{
-    float:left;background:#2C3335;
+    float:left;background:#01bdf1;
 }
 .frame{
     height:100%;
@@ -139,7 +139,7 @@ input:focus{
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
-  color: #ffffff;
+  color: #010f4b;
   font-size: 15px;
   min-height: 48px;
   width: 75%;
@@ -149,13 +149,13 @@ input:focus{
 .type_msg {position: relative;  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);}
 
 .msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
+  /* background:  repeat scroll 0 0; */
   border: medium none;
   border-radius: 50%;
-  color: #fff;
+  /* color: #fff; */
   cursor: pointer;
   font-size: 17px;
-  height: 33px;
+  height: 1px;
   position: absolute;
   right: 0;
   top: 8px;

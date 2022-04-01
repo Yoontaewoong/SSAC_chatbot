@@ -40,7 +40,7 @@
 </head>
 <body>
 	<div class="header flex flex-cols">
-    		<div class="header-title flex-item"><img src="{% static 'images/sesac.png' %}" width="50px"; height="50px"; style=" border-radius: 50%; box-shadow: 2px 2px 2px 2px #393a4e;"> E Bot
+    		<div class="header-title flex-item"><img src="{% static 'images/sesac.png' %}" width="50px"; height="50px"; style=" border-radius: 50%; box-shadow: 1px 1px 1px 1px #FFFAFA;"> E Bot
     		<a href="#" title="Refresh" onclick="resetChat();" style="float: right;"><i class="fa fa-refresh"></i></a>
     	</div>
 
@@ -53,14 +53,15 @@
         <div class="type_msg">
           {{bot_response}}
             <div class="input_msg_write">
-                <!-- <form method="post" id="myform"> -->
-                    <!-- {% csrf_token %} -->
-            	<!-- <button class="msg_send_btn1" type="button" class="mytext" onclick="runSpeechRecognition()";><i class="fa fa-microphone" aria-hidden="true"></i></button> -->
-              <input type="text" class="write_msg inputfield mytext" placeholder="Type a message" name="message" id="send" autocomplete="off" />
-              <button class="msg_send_btn" type="submit" onclick="sending();" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+
+              <input type="text" class="write_msg inputfield mytext" placeholder="Type a message" name="message" id="send" autocomplete="off" onkeyup="enterkey();" />
+              <button class="msg_send_btn" type="submit" onclick="sending();" >
+                <img src="{% static 'images/cc.png' %}" width="35px"; height="35px"; style=" border-radius: 50%; box-shadow: 1px 1px 1px 1px #FFFAFA;">
+              </button>
+              
+              <!-- <i class="fa fa-paper-plane-o" aria-hidden="true"></i> -->
           
-          <!-- </form> -->
-              <!-- <div id="output" class="hide"></div> -->
+
             </div>
           </div>
 
@@ -106,6 +107,14 @@
   insertChat("you", '{{response_greeting}}',0);
   {% endif %}
 
+  function enterkey() {
+        if (window.event.keyCode == 13) {
+          console.log("엔터")
+          sending()
+        }
+}
     </script>
+
+    
 </body>
 </html>
