@@ -12,14 +12,8 @@ Original file is located at
 # !pip install transformers
 
 import tensorflow as tf
-from transformers import AutoTokenizer
-from transformers import TFGPT2LMHeadModel
-import tqdm
 import urllib.request
 import numpy as np
-
-from tqdm import tqdm
-from tqdm.notebook import tqdm_notebook
 import time
 
 # 최종 버전
