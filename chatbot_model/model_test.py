@@ -384,7 +384,7 @@ def run(text):
 
   import pickle
   # loading
-  with open('.\\chatbot_model\\tokenizer\\tokenizer.pickle', 'rb') as handle:
+  with open('./chatbot_model/tokenizer/tokenizer.pickle', 'rb') as handle:
       tokenizer = pickle.load(handle)
 
   # 서브워드텍스트인코더를 사용하여 질문과 답변을 모두 포함한 단어 집합(Vocabulary) 생성
@@ -427,7 +427,7 @@ def run(text):
 
   model_predict.compile(optimizer=optimizer, loss=loss_function, metrics=[accuracy])
 
-  checkpoint_filepath = ".\\chatbot_model\model_weight\\transformer_50epochs.h5"
+  checkpoint_filepath = "./chatbot_model/model_weight/transformer_50epochs.h5"
 
   model_predict.load_weights(checkpoint_filepath)
 
