@@ -7,14 +7,9 @@ Original file is located at
     https://colab.research.google.com/drive/1gKKGr1jorsTqz05gd_WdojviwKkNw_eE
 """
 
-
-
 # !pip install transformers
-
 import tensorflow as tf
-import urllib.request
 import numpy as np
-import time
 
 # 최종 버전
 class PositionalEncoding(tf.keras.layers.Layer):
