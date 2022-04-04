@@ -388,11 +388,7 @@ class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
     return tf.math.rsqrt(self.d_model) * tf.math.minimum(arg1, arg2)
 
 def run(text):
-  import urllib.request
   import tensorflow as tf
-  import tensorflow_datasets as tfds
-  import time
-  import numpy as np
   import re
 
   import pickle
