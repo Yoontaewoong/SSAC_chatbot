@@ -44,6 +44,7 @@ class PositionalEncoding(tf.keras.layers.Layer):
     pos_encoding = tf.constant(angle_rads)
     pos_encoding = pos_encoding[tf.newaxis, ...]
 
+    del sines , cosines , angle_rads 
     return tf.cast(pos_encoding, tf.float32)
 
   def get_config(self):
@@ -83,6 +84,8 @@ def scaled_dot_product_attention(query, key, value, mask):
 
   # output : (batch_size, num_heads, query의 문장 길이, d_model/num_heads)
   output = tf.matmul(attention_weights, value)
+
+  del matmul_qk, depth, logits
 
   return output, attention_weights
 
@@ -159,6 +162,8 @@ class MultiHeadAttention(tf.keras.layers.Layer):
     # (batch_size, query의 문장 길이, d_model)
     outputs = self.dense(concat_attention)
 
+    del query, key, value, mask, batch_size
+
     return outputs
 
 def create_padding_mask(x):
@@ -192,6 +197,8 @@ def encoder_layer(dff, d_model, num_heads, dropout, name="encoder_layer"):
   outputs = tf.keras.layers.Dropout(rate=dropout)(outputs)
   outputs = tf.keras.layers.LayerNormalization(
       epsilon=1e-6)(attention + outputs)
+  
+  del attention 
 
   return tf.keras.Model(
       inputs=[inputs, padding_mask], outputs=outputs, name=name)
@@ -216,6 +223,7 @@ def encoder(vocab_size, num_layers, dff,
         dropout=dropout, name="encoder_layer_{}".format(i),
     )([outputs, padding_mask])
 
+  del embeddings
   return tf.keras.Model(
       inputs=[inputs, padding_mask], outputs=outputs, name=name)
 
@@ -267,6 +275,7 @@ def decoder_layer(dff, d_model, num_heads, dropout, name="decoder_layer"):
   outputs = tf.keras.layers.LayerNormalization(
       epsilon=1e-6)(outputs + attention2)
 
+  del attention1, attention2, 
   return tf.keras.Model(
       inputs=[inputs, enc_outputs, look_ahead_mask, padding_mask],
       outputs=outputs,
@@ -295,6 +304,8 @@ def decoder(vocab_size, num_layers, dff,
         dropout=dropout, name='decoder_layer_{}'.format(i),
     )(inputs=[outputs, enc_outputs, look_ahead_mask, padding_mask])
 
+
+  del embeddings
   return tf.keras.Model(
       inputs=[inputs, enc_outputs, look_ahead_mask, padding_mask],
       outputs=outputs,
@@ -338,6 +349,8 @@ def transformer(vocab_size, num_layers, dff,
   # 다음 단어 예측을 위한 출력층
   outputs = tf.keras.layers.Dense(units=vocab_size, name="outputs")(dec_outputs)
 
+  del dec_outputs, dec_padding_mask, look_ahead_mask, enc_padding_mask
+
   return tf.keras.Model(inputs=[inputs, dec_inputs], outputs=outputs, name=name)
 
 def loss_function(y_true, y_pred):
@@ -349,6 +362,7 @@ def loss_function(y_true, y_pred):
   mask = tf.cast(tf.not_equal(y_true, 0), tf.float32)
   loss = tf.multiply(loss, mask)
 
+  del y_true, mask
   return tf.reduce_mean(loss)
 
 class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
@@ -372,6 +386,7 @@ class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
     arg2 = step * (self.warmup_steps**-1.5)
 
     return tf.math.rsqrt(self.d_model) * tf.math.minimum(arg1, arg2)
+
 def run(text):
   import urllib.request
   import tensorflow as tf
@@ -379,8 +394,6 @@ def run(text):
   import time
   import numpy as np
   import re
-
-
 
   import pickle
   # loading
@@ -455,6 +468,7 @@ def run(text):
       # 이는 for문을 통해서 디코더의 입력으로 사용될 예정이다.
       output = tf.concat([output, predicted_id], axis=-1)
 
+    del sentence , predictions, predicted_id
     return tf.squeeze(output, axis=0)
 
 
@@ -475,4 +489,6 @@ def run(text):
     return sentence
 
   output = predict(text)
+
+  del tokenizer, START_TOKEN, END_TOKEN, model_predict,learning_rate, optimizer
   return output
