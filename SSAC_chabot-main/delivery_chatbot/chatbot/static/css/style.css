@@ -97,17 +97,7 @@ ul {
     overflow-y:scroll;
 }
 
-.msj-rta:after{
-    width: 0;
-    height: 0;
-    content:"";
-    top:-5px;
-    left:14px;
-    position:relative;
-    border-style: solid;
-    border-width: 13px 13px 0 0;
-    border-color: #74B9FF transparent transparent transparent;           
-}  
+s
 input:focus{
     outline: none;
 }        
