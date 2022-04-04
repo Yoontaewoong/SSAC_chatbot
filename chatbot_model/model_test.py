@@ -491,4 +491,18 @@ def run(text):
   output = predict(text)
 
   del tokenizer, START_TOKEN, END_TOKEN, model_predict,learning_rate, optimizer
+
+  import tracemalloc
+
+  tracemalloc.start()
+
+  # ... run your application ...
+
+  snapshot = tracemalloc.take_snapshot()
+  top_stats = snapshot.statistics('lineno')
+
+  print("[ Top 10 ]")
+  for stat in top_stats[:10]:
+      print(stat)
+      
   return output
