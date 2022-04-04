@@ -490,7 +490,7 @@ def run(text):
 
   output = predict(text)
 
-  del tokenizer, START_TOKEN, END_TOKEN, model_predict,learning_rate, optimizer
+  del tokenizer, START_TOKEN, END_TOKEN, model_predict,learning_rate, optimizer, checkpoint_filepath, 
 
   import tracemalloc
 
@@ -504,5 +504,5 @@ def run(text):
   print("[ Top 10 ]")
   for stat in top_stats[:10]:
       print(stat)
-      
+
   return output
