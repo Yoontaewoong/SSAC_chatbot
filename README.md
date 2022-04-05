@@ -4,8 +4,9 @@
 * 0331 챗봇 모델(seq2seq, transformer 비교) , Django mian.html 변경
 * 0404 모델링 완성, ppt 작업, Django mian.html 변경(배경, 폰트, 크기)
 * 0405 ppt완성 및 발표준비
-<
---------
+
+-------------
+
 설치모듈 pip freeze 
 
 -----![Animation (2)](https://user-images.githubusercontent.com/86470595/161506289-5838366e-58e5-44be-9989-3a630de12067.gif)
