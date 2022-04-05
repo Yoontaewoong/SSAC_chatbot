@@ -4,6 +4,7 @@
 * 0331 챗봇 모델(seq2seq, transformer 비교) , Django mian.html 변경
 * 0404 모델링 완성, ppt 작업, Django mian.html 변경(배경, 폰트, 크기)
 * 0405 ppt완성 및 발표준비
+* 0406 발표
 
 -------------
 
