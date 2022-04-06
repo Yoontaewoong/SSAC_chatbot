@@ -12,6 +12,14 @@
 #### 설치모듈 확인 → pip freeze
 
 
-![Animation (2)](https://user-images.githubusercontent.com/86470595/161506289-5838366e-58e5-44be-9989-3a630de12067.gif)
 
+
+
+https://user-images.githubusercontent.com/86470595/161884139-9483945c-bc7e-4806-97d7-7aad32ced7fa.mp4
+
+
+
+
+
+https://user-images.githubusercontent.com/86470595/161884149-b7171469-ff11-4613-95e9-7c7f167e911a.mp4
 
