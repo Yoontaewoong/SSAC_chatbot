@@ -8,7 +8,9 @@
 
 -------------
 
-설치모듈 pip freeze 
+* 설치모듈 pip freeze
+* 사용 데이터  AI 허브 소상공인 고객 주문 질의 응답 텍스트 (음식점)https://aihub.or.kr/aidata/30760
+
 
 ![Animation (2)](https://user-images.githubusercontent.com/86470595/161506289-5838366e-58e5-44be-9989-3a630de12067.gif)
 
